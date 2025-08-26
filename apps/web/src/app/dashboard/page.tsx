@@ -29,7 +29,7 @@ export default function Dashboard() {
 				<h1 className="font-bold text-2xl">Dashboard</h1>
 				<OrganizationSwitcher />
 			</div>
-			
+
 			<div className="space-y-4">
 				<div className="rounded-lg border bg-card p-4">
 					<h2 className="mb-2 font-semibold text-lg">Welcome</h2>
@@ -49,9 +49,16 @@ export default function Dashboard() {
 				{activeOrganization && (
 					<div className="rounded-lg border bg-card p-4">
 						<h2 className="mb-2 font-semibold text-lg">Organization Info</h2>
-						<p><strong>Name:</strong> {activeOrganization.name}</p>
-						<p><strong>Slug:</strong> {activeOrganization.slug}</p>
-						<p><strong>Created:</strong> {new Date(activeOrganization.createdAt).toLocaleDateString()}</p>
+						<p>
+							<strong>Name:</strong> {activeOrganization.name}
+						</p>
+						<p>
+							<strong>Slug:</strong> {activeOrganization.slug}
+						</p>
+						<p>
+							<strong>Created:</strong>{" "}
+							{new Date(activeOrganization.createdAt).toLocaleDateString()}
+						</p>
 					</div>
 				)}
 			</div>

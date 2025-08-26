@@ -75,7 +75,9 @@ export const member = sqliteTable("member", {
 	organizationId: text("organization_id")
 		.notNull()
 		.references(() => organization.id, { onDelete: "cascade" }),
-	role: text("role", { enum: ["owner", "admin", "member"] }).notNull().default("member"),
+	role: text("role", { enum: ["owner", "admin", "member"] })
+		.notNull()
+		.default("member"),
 	createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
 });
 
@@ -88,8 +90,14 @@ export const invitation = sqliteTable("invitation", {
 	organizationId: text("organization_id")
 		.notNull()
 		.references(() => organization.id, { onDelete: "cascade" }),
-	role: text("role", { enum: ["owner", "admin", "member"] }).notNull().default("member"),
-	status: text("status", { enum: ["pending", "accepted", "rejected", "cancelled"] }).notNull().default("pending"),
+	role: text("role", { enum: ["owner", "admin", "member"] })
+		.notNull()
+		.default("member"),
+	status: text("status", {
+		enum: ["pending", "accepted", "rejected", "cancelled"],
+	})
+		.notNull()
+		.default("pending"),
 	expiresAt: integer("expires_at", { mode: "timestamp" }).notNull(),
 	// Optional team support
 	teamId: text("team_id"),
@@ -136,8 +144,9 @@ export const timeEntry = sqliteTable("time_entry", {
 	organizationId: text("organization_id")
 		.notNull()
 		.references(() => organization.id, { onDelete: "cascade" }),
-	projectId: text("project_id")
-		.references(() => project.id, { onDelete: "set null" }),
+	projectId: text("project_id").references(() => project.id, {
+		onDelete: "set null",
+	}),
 	userId: text("user_id")
 		.notNull()
 		.references(() => user.id, { onDelete: "cascade" }),
@@ -145,7 +154,9 @@ export const timeEntry = sqliteTable("time_entry", {
 	startTime: integer("start_time", { mode: "timestamp" }).notNull(),
 	endTime: integer("end_time", { mode: "timestamp" }),
 	duration: integer("duration"), // in seconds
-	isRunning: integer("is_running", { mode: "boolean" }).notNull().default(false),
+	isRunning: integer("is_running", { mode: "boolean" })
+		.notNull()
+		.default(false),
 	createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
 	updatedAt: integer("updated_at", { mode: "timestamp" }).notNull(),
 });
