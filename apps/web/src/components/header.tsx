@@ -10,7 +10,7 @@ export default function Header() {
 	];
 
 	return (
-		<div>
+		<header className="sticky top-0 z-50 border-b bg-background">
 			<div className="flex flex-row items-center justify-between px-2 py-1">
 				<nav className="flex gap-4 text-lg">
 					{links.map(({ to, label }) => {
@@ -27,6 +27,6 @@ export default function Header() {
 				</div>
 			</div>
 			<hr />
-		</div>
+		</header>
 	);
 }
